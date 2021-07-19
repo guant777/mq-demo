@@ -1,0 +1,47 @@
+server:
+  port: 8081
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 200
+    accept-count: 200
+    min-spare-threads: 50
+
+## Redis 配置
+## Redis数据库索引（默认为0）
+spring:
+  redis:
+    sentinel:
+      master: sentinel-10.16.34.125-6390
+      nodes:
+        - 10.16.34.125:6392
+        - 10.16.34.125:6393
+        - 10.16.34.125:6394
+    jedis:
+     pool:
+       # 连接池最大连接数（使用负值表示没有限制）
+       max-active: 10
+       # 连接池最大阻塞等待时间（使用负值表示没有限制）
+       max-wait: -1
+       # 连接池中的最大空闲连接
+       max-idle: 10
+       # 连接池中的最小空闲连接
+       min-idle: 0
+    # Redis数据库索引(默认为0)
+    database: 0
+    # 连接超时时间（毫秒）
+    timeout: 1000
+
+#kafka消费者配置
+kafka:
+  bootstrap:
+    servers: 10.216.38.18:9092,10.216.38.19:9092,10.216.38.21:9092
+  enable:
+    auto:
+      commit: true
+  auto:
+    commit:
+      interval:
+        ms: 100
+  session:
+    timeout:
+      ms: 15000
